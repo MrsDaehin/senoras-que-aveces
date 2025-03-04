@@ -1,81 +1,122 @@
-What Is Observability?
+# Los 3 Pilares de la Telemetría: Metrics, Logs y Traces
 
-Observability is the ability to gain deep insights into the internal workings of a system by examining its outputs. This information is crucial for troubleshooting problems, optimizing performance, and improving security. In simpler terms, observability allows you to understand why a system is behaving the way it is.
+![Telemetry vs Observability](https://i.imgur.com/kQTQlc6.png)
 
-Observability is the measure of how well the internal states of a system can be inferred from knowledge of its external outputs. Often confused with monitoring, observability goes a step further by identifying issues in a system and why those issues occur. It’s from control theory and has become super crucial in software engineering, especially with the rise of complex, distributed systems and microservices. Observability collects data from metrics, logs, and traces, the three pillars, to give a complete view of a system’s health and performance.
+## Cuál es la diferencia entre Observabilidad y Monitorización
 
-What is the Difference Between Observability and Monitoring?
+La monitorización es una práctica de recopilación de datos sobre el rendimiento y el comportamiento del sistema. Es una parte crucial de la observabilidad, pero no proporciona el mismo nivel de conocimiento que nos puede proporcionar la Observabilidad.  La observabilidad va más allá de la simple recopilación de datos, ya que permite hacer preguntas y explorar las causas raíz de los problemas.
 
-Monitoring is a practice of collecting data on system performance and behavior. It’s a crucial part of observability, but it doesn’t provide the same level of insight. Observability goes beyond simple data collection by allowing you to ask questions and explore the root causes of issues.
+## Qué es Observabilidad
 
-The three Pillars of Observability
+La observabilidad es la capacidad de obtener información sobre el funcionamiento interno de un sistema mediante el análisis de sus resultados. Esta información es crucial para solucionar problemas, optimizar el rendimiento y mejorar la seguridad. En términos más simples, la observabilidad te permite comprender por qué un sistema se comporta de cierta manera.
 
+La observabilidad es la forma de medir "cómo de bien" se pueden inferir los estados internos de un sistema a partir del conocimiento de sus resultados externos. A menudo se confunde con el monitoreo, pero la observabilidad va un paso más allá al identificar problemas en un sistema y determinar por qué ocurren. Proviene de la [teoría de control](https://www.controltheory.com/) y se ha convertido en fundamental en la ingeniería de software, especialmente con el auge de sistemas complejos, distribuidos y microservicios. La observabilidad recopila datos de métricas, registros (logs) y trazas, los tres pilares, para ofrecer una visión completa del estado y rendimiento de un sistema.
 
-Logs, metrics, and traces are the foundation of any observable system. These three pillars provide different views of system behavior and performance and, when used together, give you complete visibility. Understanding how they work together is key to a good observability strategy. Each pillar provides different data, and when used together, you can see the whole system.
+![tres pilares de la observabilidad](assets/20250304_134008_observability-metrics-image3.jpg)
 
+### Cuándo deberíamos usar logs vs. metrics vs. traces
 
-Logs  the WHY
-What are Logs?
-Logs are the most detailed observability data, capturing individual events within your system. They can be plaintext, structured, or binary, each for different use cases:
+Al decidir cómo instrumentar tus sistemas y qué tipos de datos de telemetría utilizar, es importante considerar tu estrategia general de observabilidad y los casos de uso que deseas habilitar. Luego, puedes aprovechar los diferentes tipos de datos en consecuencia. Dado que cada uno tiene fortalezas y debilidades, lo ideal suele ser utilizar una combinación de métricas, trazas y registros (logs), asignando cada tipo de telemetría a sus beneficios específicos y utilizando otros para compensar sus limitaciones. Aunque los detalles pueden variar significativamente y no hay una única respuesta “correcta”, aquí tienes algunas pautas que pueden ayudarte a determinar cuál es la mejor opción para cada caso de uso:
 
-Plaintext logs are simple and human-readable.
-Structured logs are formatted, making them easier to parse and automate analysis.
-Binary logs are more efficient but require special tools to interpret.
+![Logs vs Metrics vs Traces - Engineering Fundamentals Playbook](https://microsoft.github.io/code-with-engineering-playbook/observability/images/signals.png)
 
-Roles of Logs
-Logs have several key roles in system monitoring and management. They are essential for:
+* Usa métricas para KPI de referencia frecuente o como entrada para alertas, donde el rendimiento es importante y los patrones de acceso se conocen de antemano.
+* Usa métricas para el seguimiento de mediciones durante períodos prolongados, como meses o años.
+* Usa trazas en casos donde comprender la relación entre servicios u operaciones dependientes sea especialmente valioso.
+* Usa logs o trazas en los casos donde se requerian análisis ad-hoc o troubleshooting en campos de alta cardinalidad.
+* Usa logs en los casos donde  necesitemos información de interés en ese caso, como error messages o stack traces.
 
-Real-time monitoring: Immediate visibility into system events.
-Troubleshooting: Detailed information to diagnose issues.
-Compliance: Tracking changes and access to meet regulatory requirements.
-Business analytics: Actionable insights from system operations.
+Logs, metrics y trazas son la base de cualquier sistema observable. Estos 3 pilares nos dan distintas perspectivas del comportamiento del sistema y del performance, y usándose juntas, nos dan completa visibilidad. Entender cómo estos tres pilares trabajan conjuntamente es una buena estrategia de observabilidad. Cada pilar nos da información de forma distinta, y cuando se usan conjuntamente se puede ver el conjunto del sistema.
 
-Log Challenges
-Despite their importance, logs are a challenge. The volume of log data is overwhelming, leading to high storage costs and performance issues. Processing and analyzing this data requires robust solutions:
+![What's the difference between Observability & Monitoring?](https://cdn.hashnode.com/res/hashnode/image/upload/v1647291632379/i5JsLfShU.png?auto=compress,format&format=webp)
 
-Big data: Handling large amounts of log data is resource-hungry.
-Performance: High logging can impact system performance.
-Cost: Storing and managing lots of log data is expensive.
-Treating event logging as a stream processing problem can help with some of these challenges, with tools like Kafka and Humio used for log management and analysis.
+#### Qué son los logs?
 
-Metrics  When and Where
-Defining Metrics
-Metrics are time series data points. They have evolved to have labels that add dimension and context. For example, CPU usage metrics can be labeled by server, application, or region so you can drill down further. This has made observability metrics a robust real-time monitoring and trend analysis tool.
+Logs son el dato más detallado de observabilidad, capturando eventos de forma eventual en tu sistema. Pueden ser de texto plano, estructurado o binario, cada uno para distintos casos de uso:
 
-Benefits of Metrics
-Metrics are helpful for:
+* Logs en texto plano son simples y legibles.
+* Logs estructurados son formateados, pudiendo ser parseados de manera sencilla y analizados de forma automática, e.g.
 
-Dashboards: Creating visualizations that give you an at-a-glance view of system health so you can quickly check-in.
-Alerts: Driving real-time notification systems to tell you when something is going wrong.
-Mathematical transformations: You can calculate averages or perform anomaly detection to delve deeper into system behavior and performance trends.
-Drawbacks of Metrics
-But metrics aren’t without their limitations:
+  `[15/Nov/2021:04:47:53 -0500] 192.168.56.87 [31221] [/home/menu] [2335] ERROR: record id=23434 not found in table`
 
-High cardinality: Where there are many unique label combinations it can slow down performance and make data analysis harder.
-Summarised view: Metrics give you a summarised view of system performance which may not have enough detail for deep-dive diagnostics.
-So they’re not great for pinpointing specific issues without additional context from logs or traces.
+  vs
 
+  `{ "hostName": "192.168.0.1", "pid": "31221", "path": "/home/menu," "error_number": 2335 "message": "ERROR: record id=23434 not found in table." }`
+* Logs en Binario son más eficiente pero necesitan herramientas especiales para poder ser interpretados.
 
+##### Rol de Logs
 
-Traces  What 
-Exploring Traces
-Traces follow the requests as they flow through a system, capturing related events. This level of detail is key to understanding how different parts of your system interact and where the bottlenecks are. Tracing shows you the journey of a request from start to finish and where things go wrong along the way.
+Los Logs tienen varios roles clave en la monitorizacion y la gestión de los sistems. Son esenciales para:
 
-Benefits of Traces
-Optimized the request flow to meet service levels.
-Easier diagnoses and fixing performance issues = more efficient development and operations.
-Tracing challenges
-Tracing can be hard and resource-heavy. It often requires:
+Monitorización en Tiempo Real: Visibilidad inmediata de los eventos de sistema.
+Troubleshooting: Información detallada para diagnosticar problemas.
+Compliance: Seguimiento de cambios y acceso para cumplir con los requisitos.
+Análisis de Negocio: Información útil a partir de las operaciones del sistema. 
 
-Manual code changes: Instrumenting the system.
-Backend coverage limitations: Traces don’t cover all backend services.
-But service meshes are emerging that are solving these challenges by making tracing easier and more comprehensive.
+##### Reto de los Log
+
+Independientemente de su importancia, los logs son un reto. El volumen de logs puede ser abrumador, llevando a costes elevados en almacenamiento y problemas de performance. El procesamiento y análisis de estos datos necesitan una solución robusta:
+
+Big data: El manejo de grandes cantidades de datos consume muchos recursos.
+Performance: el logging puede llegar a impactar el performance del sistema.
+Coste: el almacenamiento y la gestión de datos de log es cara.
+
+El tratamiento de los eventos de logging como un procesamiento en stream puede ayudar con algunos de estos retos, con herramientas como Kafka ...
+
+#### Qué son las métricas
+
+##### Definiendo métricas
+
+Las métricas son representadas como series temporales. Han evolucionado hasta tener etiquetas que añaden dimensiones y contexto a un simple dato puntual. Por ejemplo, las métricas de CPU pueden tener etiquetas por servidor, aplicación o region. Esto ha hecho que las métricas de observabilidad sean una herramienta robusta de monitoreo y análisis de tendencias en tiempo real.
 
 
+##### **Métricas son útiles para:**
 
-How Metrics, Logs, and Traces Work Together
-The combination of metrics, logs, and traces creates an environment for advanced monitoring and problem-solving across IT environments. Each of these three pillars provides unique information, but together they give you a full view of systems and applications.
-Observability Metrics are numerical data that measure the operations in a system, like response times, resource usage, and error rates. Logs are detailed records of what happens in the system, providing context and details about operations and events. Traces allow you to follow the journey of a specific request or transaction across different components and services.
-When these pieces are connected, IT professionals can cross-reference information quickly.
-For example, a spike in a metric can lead a developer to look at the logs at the exact time of the spike to see what was happening on the system. If the logs show an error or an unusual event, traces can be used to follow the path of the affected request to see which services or components were involved and how they interacted.
-This cohesive use of data not only speeds up the troubleshooting process but also gives you a better understanding of system behavior in real-world operations.
+**Tableros:** Crear visualizaciones que te dan una vista rápida de la salud del sistema para que puedas verificar rápidamente.
+
+**Alertas:** Impulsar sistemas de notificación en tiempo real para avisarte cuando algo va mal.
+
+**Transformaciones matemáticas:** Puedes calcular promedios o realizar detección de anomalías para profundizar en el comportamiento del sistema y las tendencias de rendimiento.
+
+**Desventajas de las Métricas**
+Pero las métricas no están exentas de sus limitaciones:
+
+**Alta cardinalidad:** Cuando hay muchas combinaciones únicas de etiquetas, puede ralentizar el rendimiento y dificultar el análisis de datos.
+
+**Vista resumida:** Las métricas te dan una vista resumida del rendimiento del sistema, que puede no tener suficiente detalle para diagnósticos profundos.
+
+Por lo tanto, no son ideales para identificar problemas específicos sin contexto adicional de logs o trazas.
+
+#### **Trazas CÓMO**
+
+##### **Explorando Trazas**
+
+Las trazas siguen las solicitudes a medida que fluyen a través de un sistema, capturando eventos relacionados. Este nivel de detalle es clave para entender cómo interactúan las diferentes partes de tu sistema y dónde están los cuellos de botella. La trazabilidad te muestra el recorrido de una solicitud desde el inicio hasta el final y dónde las cosas salen mal en el camino.
+
+##### **Beneficios de las Trazas**
+
+Optimizar el flujo de solicitudes para cumplir con los niveles de servicio.
+
+Diagnósticos y soluciones de problemas de rendimiento más fáciles = desarrollo y operaciones más eficientes.
+
+##### **Desafíos de las Trazas**
+
+El trazado puede ser complicado y pesado en recursos. A menudo requiere:
+
+**Cambios manuales en el código:** Instrumentar el sistema.
+
+**Limitaciones de cobertura en el backend:** Las trazas no cubren todos los servicios de backend.
+
+Pero están surgiendo mallas de servicios que están resolviendo estos desafíos al hacer que el trazado sea más fácil y completo.
+
+**Cómo las Métricas, logs y Trazas Trabajan Juntas**
+La combinación de métricas, logs y trazas crea un entorno para la supervisión avanzada y la resolución de problemas en entornos de TI. Cada uno de estos tres pilares proporciona información única, pero juntos te dan una vista completa de los sistemas y aplicaciones.
+
+**Observabilidad**
+Las métricas son datos numéricos que miden las operaciones en un sistema, como tiempos de respuesta, uso de recursos y tasas de error. Los logs son registros detallados de lo que sucede en el sistema, proporcionando contexto y detalles sobre operaciones y eventos. Las trazas te permiten seguir el recorrido de una solicitud o transacción específica a través de diferentes componentes y servicios.
+
+Cuando estas piezas están conectadas, los profesionales de TI pueden hacer referencias cruzadas de información rápidamente.
+
+Por ejemplo, un aumento en una métrica puede llevar a un desarrollador a mirar los logs en el momento exacto del aumento para ver lo que estaba sucediendo en el sistema. Si los logs muestran un error o un evento inusual, las trazas pueden usarse para seguir el camino de la solicitud afectada para ver qué servicios o componentes estaban involucrados y cómo interactuaron.
+
+Este uso de datos no solo acelera el proceso de resolución de problemas, sino que también te brinda una mejor comprensión del comportamiento del sistema en operaciones del mundo real.
