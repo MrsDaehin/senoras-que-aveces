@@ -12,7 +12,7 @@ La observabilidad es la capacidad de obtener información sobre el funcionamient
 
 La observabilidad es la forma de medir "cómo de bien" se pueden inferir los estados internos de un sistema a partir del conocimiento de sus resultados externos. A menudo se confunde con el monitoreo, pero la observabilidad va un paso más allá al identificar problemas en un sistema y determinar por qué ocurren. Proviene de la [teoría de control](https://www.controltheory.com/) y se ha convertido en fundamental en la ingeniería de software, especialmente con el auge de sistemas complejos, distribuidos y microservicios. La observabilidad recopila datos de métricas, registros (logs) y trazas, los tres pilares, para ofrecer una visión completa del estado y rendimiento de un sistema.
 
-![tres pilares de la observabilidad](assets/20250304_134008_observability-metrics-image3.jpg)
+![3 Pillars of Observability - Naukri Code 360](https://files.codingninjas.in/article_images/3-pillars-of-observability-1-1689499197.webp)
 
 ### Cuándo deberíamos usar logs vs. metrics vs. traces
 
@@ -51,7 +51,7 @@ Los Logs tienen varios roles clave en la monitorizacion y la gestión de los sis
 Monitorización en Tiempo Real: Visibilidad inmediata de los eventos de sistema.
 Troubleshooting: Información detallada para diagnosticar problemas.
 Compliance: Seguimiento de cambios y acceso para cumplir con los requisitos.
-Análisis de Negocio: Información útil a partir de las operaciones del sistema. 
+Análisis de Negocio: Información útil a partir de las operaciones del sistema.
 
 ##### Reto de los Log
 
@@ -68,7 +68,6 @@ El tratamiento de los eventos de logging como un procesamiento en stream puede a
 ##### Definiendo métricas
 
 Las métricas son representadas como series temporales. Han evolucionado hasta tener etiquetas que añaden dimensiones y contexto a un simple dato puntual. Por ejemplo, las métricas de CPU pueden tener etiquetas por servidor, aplicación o region. Esto ha hecho que las métricas de observabilidad sean una herramienta robusta de monitoreo y análisis de tendencias en tiempo real.
-
 
 ##### **Métricas son útiles para:**
 
