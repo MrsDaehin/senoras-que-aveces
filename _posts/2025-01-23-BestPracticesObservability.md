@@ -69,7 +69,7 @@ El tratamiento de los eventos de logging como un procesamiento en stream puede a
 
 Las métricas son representadas como series temporales. Han evolucionado hasta tener etiquetas que añaden dimensiones y contexto a un simple dato puntual. Por ejemplo, las métricas de CPU pueden tener etiquetas por servidor, aplicación o region. Esto ha hecho que las métricas de observabilidad sean una herramienta robusta de monitoreo y análisis de tendencias en tiempo real.
 
-##### **Métricas son útiles para:**
+##### **Ventajas de las métricas**
 
 **Tableros:** Crear visualizaciones que te dan una vista rápida de la salud del sistema para que puedas verificar rápidamente.
 
@@ -77,16 +77,17 @@ Las métricas son representadas como series temporales. Han evolucionado hasta t
 
 **Transformaciones matemáticas:** Puedes calcular promedios o realizar detección de anomalías para profundizar en el comportamiento del sistema y las tendencias de rendimiento.
 
-**Desventajas de las Métricas**
+##### **Desventajas de las Métricas**
+
 Pero las métricas no están exentas de sus limitaciones:
 
 **Alta cardinalidad:** Cuando hay muchas combinaciones únicas de etiquetas, puede ralentizar el rendimiento y dificultar el análisis de datos.
 
 **Vista resumida:** Las métricas te dan una vista resumida del rendimiento del sistema, que puede no tener suficiente detalle para diagnósticos profundos.
 
-Por lo tanto, no son ideales para identificar problemas específicos sin contexto adicional de logs o trazas.
+Por lo tanto, **no son ideales para identificar problemas específicos** sin contexto adicional de logs o trazas.
 
-#### **Trazas DÓNDE**
+#### **Qué son las trazas**
 
 ##### **Explorando Trazas**
 
@@ -117,10 +118,14 @@ Las **métricas** son **datos numéricos que miden las operaciones en un sistema
 
 Los **logs** son registros detallados de lo que sucede en el sistema, proporcionando **contexto y detalles sobre operaciones y eventos**.
 
-Las **trazas** te permiten s**eguir el recorrido** de una request o transacción específica a través de diferentes componentes y servicios.
+Las **trazas** te permiten **seguir el recorrido** de una request o transacción específica a través de diferentes componentes y servicios.
 
 Cuando estas piezas están conectadas,se pueden hacer referencias cruzadas de información rápidamente.
 
 Por ejemplo, un aumento en una métrica puede llevar a un desarrollador a mirar los logs en el momento exacto del aumento para ver lo que estaba sucediendo en el sistema. Si los logs muestran un error o un evento inusual, las trazas pueden usarse para seguir el camino de la solicitud afectada para ver qué servicios o componentes estaban involucrados y cómo interactuaron.
 
 Este uso de datos no solo acelera el proceso de resolución de problemas, sino que también te brinda una mejor comprensión del comportamiento del sistema en operaciones del mundo real.
+
+La trazabilidad distribuida es el como el anillo único que ata a los otros anillo, o en nuestro caso "el relato" de observabilidad. Nos da contexto y datos asignado un identificador único a cada petición, las trazas nos permitirán seguir el viaje de esa request a través de los servicios, revelando el flujo de la aplicación, los cuellos de botella de rendimiento y los errores.
+
+Las trazas nos permiten una visión unificada del comportamiento de sistema, conectado eventos dispares en una narrativa coherente.
