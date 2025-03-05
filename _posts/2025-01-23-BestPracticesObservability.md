@@ -86,35 +86,40 @@ Pero las métricas no están exentas de sus limitaciones:
 
 Por lo tanto, no son ideales para identificar problemas específicos sin contexto adicional de logs o trazas.
 
-#### **Trazas CÓMO**
+#### **Trazas DÓNDE**
 
 ##### **Explorando Trazas**
 
-Las trazas siguen las solicitudes a medida que fluyen a través de un sistema, capturando eventos relacionados. Este nivel de detalle es clave para entender cómo interactúan las diferentes partes de tu sistema y dónde están los cuellos de botella. La trazabilidad te muestra el recorrido de una solicitud desde el inicio hasta el final y dónde las cosas salen mal en el camino.
+Las trazas siguen las request a medida que fluyen a través de un sistema, capturando **eventos** relacionados. Este nivel de detalle es clave para entender cómo interactúan las diferentes partes de tu sistema y dónde están los cuellos de botella. La **trazabilidad** te muestra el recorrido de una request desde el inicio hasta el final y dónde las cosas salen mal en el camino.
 
 ##### **Beneficios de las Trazas**
 
-Optimizar el flujo de solicitudes para cumplir con los niveles de servicio.
+Optimizar el flujo de request para cumplir con los niveles de servicio ( SLA, SLO ).
 
 Diagnósticos y soluciones de problemas de rendimiento más fáciles = desarrollo y operaciones más eficientes.
 
 ##### **Desafíos de las Trazas**
 
-El trazado puede ser complicado y pesado en recursos. A menudo requiere:
+La trazabilidad puede ser complicada y pesada en recursos. A menudo requiere:
 
-**Cambios manuales en el código:** Instrumentar el sistema.
+**Cambios manuales en el código:** Instrumentalizar el sistema.
 
 **Limitaciones de cobertura en el backend:** Las trazas no cubren todos los servicios de backend.
 
-Pero están surgiendo mallas de servicios que están resolviendo estos desafíos al hacer que el trazado sea más fácil y completo.
+Pero están surgiendo service mesh que están resolviendo estos desafíos al hacer que el trazado sea más fácil y completo.
 
-**Cómo las Métricas, logs y Trazas Trabajan Juntas**
-La combinación de métricas, logs y trazas crea un entorno para la supervisión avanzada y la resolución de problemas en entornos de TI. Cada uno de estos tres pilares proporciona información única, pero juntos te dan una vista completa de los sistemas y aplicaciones.
+##### **Cómo las Métricas, logs y Trazas Trabajan Juntas**
+
+La combinación de métricas, logs y trazas crea un entorno para la supervisión avanzada y la resolución de problemas en entornos de IT. Cada uno de estos tres pilares proporciona información única, pero juntos te dan una vista completa de los sistemas y aplicaciones.
 
 **Observabilidad**
-Las métricas son datos numéricos que miden las operaciones en un sistema, como tiempos de respuesta, uso de recursos y tasas de error. Los logs son registros detallados de lo que sucede en el sistema, proporcionando contexto y detalles sobre operaciones y eventos. Las trazas te permiten seguir el recorrido de una solicitud o transacción específica a través de diferentes componentes y servicios.
+Las **métricas** son **datos numéricos que miden las operaciones en un sistema**, como tiempos de respuesta, uso de recursos y tasas de error.
 
-Cuando estas piezas están conectadas, los profesionales de TI pueden hacer referencias cruzadas de información rápidamente.
+Los **logs** son registros detallados de lo que sucede en el sistema, proporcionando **contexto y detalles sobre operaciones y eventos**.
+
+Las **trazas** te permiten s**eguir el recorrido** de una request o transacción específica a través de diferentes componentes y servicios.
+
+Cuando estas piezas están conectadas,se pueden hacer referencias cruzadas de información rápidamente.
 
 Por ejemplo, un aumento en una métrica puede llevar a un desarrollador a mirar los logs en el momento exacto del aumento para ver lo que estaba sucediendo en el sistema. Si los logs muestran un error o un evento inusual, las trazas pueden usarse para seguir el camino de la solicitud afectada para ver qué servicios o componentes estaban involucrados y cómo interactuaron.
 
