@@ -1,4 +1,4 @@
-# Los 3 Pilares de la Telemetría: Metrics, Logs y Traces
+# Los 3+1 Pilares de la Telemetría: Metrics, Logs y Traces más Profiling
 
 ![Telemetry vs Observability](https://i.imgur.com/kQTQlc6.png)
 
@@ -52,6 +52,8 @@ Monitorización en Tiempo Real: Visibilidad inmediata de los eventos de sistema.
 Troubleshooting: Información detallada para diagnosticar problemas.
 Compliance: Seguimiento de cambios y acceso para cumplir con los requisitos.
 Análisis de Negocio: Información útil a partir de las operaciones del sistema.
+
+![](assets/20250307_132235_w5lBz4b.png)
 
 ##### Reto de los Log
 
@@ -129,3 +131,11 @@ Este uso de datos no solo acelera el proceso de resolución de problemas, sino q
 La trazabilidad distribuida es el como el anillo único que ata a los otros anillo, o en nuestro caso "el relato" de observabilidad. Nos da contexto y datos asignado un identificador único a cada petición, las trazas nos permitirán seguir el viaje de esa request a través de los servicios, revelando el flujo de la aplicación, los cuellos de botella de rendimiento y los errores.
 
 Las trazas nos permiten una visión unificada del comportamiento de sistema, conectado eventos dispares en una narrativa coherente.
+
+Links:
+
+https://read.srepath.com/p/intro-to-logs-metrics-and-tracing
+
+https://edgedelta.com/company/blog/tracing-vs-logging-differences-with-examples#:~:text=Tracing%20records%20the%20journey%20of,when%20tracing%20is%20widely%20used.
+
+https://www.honeycomb.io/blog/understanding-logs-vs-traces
